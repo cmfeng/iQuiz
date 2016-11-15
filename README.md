@@ -33,8 +33,7 @@ TableCells have the right data: 1 pt
 TableCells display icons and subtext: 1 pt
 Settings alert: 1 pt
 
-## Part2
-A Multiple-Choice Q-and-A application  
+## Part2 A Multiple-Choice Q-and-A application  
 users can choose from a collection of quizzes  
 each quiz has a number (1-to-many) of questions  
 each question is a multiple-choice answer  

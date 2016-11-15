@@ -9,7 +9,6 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
-
     private var subs = ["Mathematics", "Marvel Super Heroes","Science"]
     private var descs = ["Think you are good at math?","Provided by Marvel Comics",
                          "I love science"]
@@ -106,6 +105,12 @@ class MainTableViewController: UITableViewController {
         return true
     }
     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UserDefaults.standard.set(indexPath.row, forKey: "selectedRow")
+        UserDefaults.standard.set(0, forKey: "queNumber")
+        UserDefaults.standard.set(0, forKey: "rightNumber")
+        //UserDefaults.standard.integer(forKey: "selectedRow") = indexPath.row
+    }
 
     /*
     // MARK: - Navigation

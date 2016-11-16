@@ -12,7 +12,7 @@ class MainTableViewController: UITableViewController {
     private var subs = ["Mathematics", "Marvel Super Heroes","Science"]
     private var descs = ["Think you are good at math?","Provided by Marvel Comics",
                          "I love science"]
-    
+    private var url = "http://tednewardsandbox.site44.com/questions.json"
     @IBAction func SettingAlert(_ sender: AnyObject) {
         let alertcontroller = UIAlertController.init(title: "Setting", message: "Settings go here", preferredStyle: .alert)
         let act = UIAlertAction(title: "OK", style: .default, handler: {action in
@@ -24,13 +24,40 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        let urlComponents: URLComponents
+        let session: URLSession
+        var searchURLComponents = URLComponents()
+        searchURLComponents.path = "/search"
+        searchURLComponents.queryItems = [URLQueryItem(name: "q", value: url)]
+        let searchURL = searchURLComponents.url!
+    }
+        /*session.dataTask(url: searchURL, completion: {(_, _, data, _)
+            } completion(),,,};).resume()
+
+            (data, response, error) -> Void in
+            
+            let statusCode = respons
+        }
+        
+        let requestURL: NSURL = NSURL(string: url)!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+        let task = URLSession.shared.dataTask(with: urlRequest as URLRequest){
+            (data, response, error) -> Void in
+            
+            if error != nil{
+                callback("", error!.localizedDescription)
+            } else{
+                let result = NSString
+            }
+        }
+        task.resume() */
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

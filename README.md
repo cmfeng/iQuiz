@@ -68,6 +68,24 @@ finished scene acts as intended: 1 pt
 segues to each scene: 1 pt  
 "back" button goes to the beginning: 1 pt  
 
+## Part3: Network and storage  
+all quizzes/questions should come from online  
+store the quizzes/questions to local storage  
+if offline, use locally-stored data  
+initial URL to use:  
+http://tednewardsandbox.site44.com/questions.json  
+Settings should be a popover  
+include a URL field to use instead of the above  
+include a "check now" button to retrieve  
+### Points  
+continue to develop in "iQuiz"  
+download JSON from site  
+store JSON to local storage  
+use local storage offline  
+refresh on Settings "check now"  
+
+
+
 
 
 

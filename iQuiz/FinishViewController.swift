@@ -11,6 +11,11 @@ import UIKit
 class FinishViewController: UIViewController {
     let r = UserDefaults.standard.integer(forKey: "rightNumber")
     let q = UserDefaults.standard.integer(forKey: "queNumber")
+    
+    
+    var corCount : Int = 0
+    var qCount : Int = 0
+    
     var Desc = ""
     
     @IBOutlet weak var DescText: UILabel!
@@ -20,7 +25,7 @@ class FinishViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ScoreText.text = "\(r) of \(q) correct"
+        ScoreText.text = "\(corCount) of \(qCount) correct"
         let correctRate = Double(r)/Double(q)
         if (r == q){
             Desc = "Perfect!"

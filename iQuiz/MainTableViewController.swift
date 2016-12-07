@@ -9,27 +9,40 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
+    
+    
     private var subs = ["Mathematics", "Marvel Super Heroes","Science"]
     private var descs = ["Think you are good at math?","Provided by Marvel Comics",
                          "I love science"]
     private var url = "http://tednewardsandbox.site44.com/questions.json"
+    var quizes = Quizes.shared
+    var queS = QuestionS.shared
     @IBAction func SettingAlert(_ sender: AnyObject) {
-        let alertcontroller = UIAlertController.init(title: "Setting", message: "Settings go here", preferredStyle: .alert)
-        let act = UIAlertAction(title: "OK", style: .default, handler: {action in
-            self.dismiss(animated: true, completion: nil)})
-        alertcontroller.addAction(act)
+        let alertcontroller = UIAlertController.init(title: "Update", message: "Input URL below", preferredStyle: UIAlertControllerStyle.alert)
+        alertcontroller.addTextField { (textField) in
+            textField.placeholder = "URL"
+        }
+        alertcontroller.addAction(UIAlertAction(title: "check now", style: .default) {
+            UIAlertAction in
+            let url = alertcontroller.textFields![0] as UITextField
+            GetData.getData(url.text)
+            self.tableView.reloadData()
+            }
+        )
         self.present(alertcontroller, animated: true)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.tableFooterView = UIView()
+        GetData.getData("http://tednewardsandbox.site44.com/questions.json")
+        //print ("from mainTableView \(self.quizes.list)")
+
+        /*self.tableView.tableFooterView = UIView()
         let urlComponents: URLComponents
         let session: URLSession
         var searchURLComponents = URLComponents()
         searchURLComponents.path = "/search"
         searchURLComponents.queryItems = [URLQueryItem(name: "q", value: url)]
-        let searchURL = searchURLComponents.url!
+        let searchURL = searchURLComponents.url!*/
     }
         /*session.dataTask(url: searchURL, completion: {(_, _, data, _)
             } completion(),,,};).resume()
@@ -63,12 +76,12 @@ class MainTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+/*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
         
-    }
+    }*/
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,22 +91,32 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.subs.count
+        return self.quizes.list.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell", for: indexPath)
+        cell.awakeFromNib()
+        cell.setSelected(true, animated: true)
 
         // Configure the cell...
         let image : UIImage = UIImage(named: "3")!
+        
+        //let cellImg : UIImageView = UIImageView()
+        //cellImg.frame = CGRect(x: 0, y: 0, width : 50, height: 100)
+        //cellImg.image = image
+        //cell.imageView?.image = quizes.list[indexPath.row].icon
         cell.imageView?.image = image
-        let sub = self.subs[indexPath.row]
-        let desc = descs[indexPath.row]
+        //cell.addSubview(cellImg)
+        let sub = self.quizes.list[indexPath.row].subject
+        let desc = self.quizes.list[indexPath.row].quizDescription
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byCharWrapping
-        cell.textLabel?.text = "Subject: \(sub)\nDescp: \(desc)"
-        
+        cell.textLabel?.text = "\(sub)\n\(desc)"
+        cell.awakeFromNib()
+        cell.setSelected(true, animated: true)
+        //print (self.quizes.list)
         return cell
     }
     
@@ -131,22 +154,26 @@ class MainTableViewController: UITableViewController {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
+ 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UserDefaults.standard.set(indexPath.row, forKey: "selectedRow")
         UserDefaults.standard.set(0, forKey: "queNumber")
         UserDefaults.standard.set(0, forKey: "rightNumber")
         //UserDefaults.standard.integer(forKey: "selectedRow") = indexPath.row
-    }
+    }*/
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let destination = segue.destination as! QuestionViewController
+        let cell = sender
+        let seletedRow = tableView.indexPath(for: cell as! UITableViewCell)!.row
+        destination.subject = quizes.list[seletedRow].subject
     }
-    */
+    
 
 }

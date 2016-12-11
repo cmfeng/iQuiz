@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EA1-fL-7Mv" id="uxK-HZ-58y">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -277,7 +277,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="ePr-FZ-w1a"/>
         <segue reference="Ona-UC-hwC"/>
-        <segue reference="hXS-dY-QUj"/>
     </inferredMetricsTieBreakers>
 </document>

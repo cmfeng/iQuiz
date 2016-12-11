@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class GetData{
-    static let queS = QuestionS()
+    static let queS = QuestionS.shared
     static let quizes = Quizes.shared
     //static let quizes = Quizes.getOriginalQuizes()
     public static func getData(_ givenUrl: String? = "http://tednewardsandbox.site44.com/questions.json") {
@@ -47,17 +47,18 @@ class GetData{
                             let answers = questionJs["answers"]
                             let question = Question(text as! String, answers as! [String], crtAns!)
                             questions.append(question)
+                            //print ("fromGetData question \(question.text) \(question.answer)")
                         }
                         queS.list[title] = questions
                         let quiz = Quiz(subject: title, quizDesc: desc as! String, icon: icon)
                         quizes.add(quiz: quiz)
                         //print ("from GetData")
                         //print (quizes.list)
-                        print ("fromGetData ques.list \(queS.list)")
+                        //print ("fromGetData ques.list \(queS.list)")
                     }
                     
                 } catch {
-                    print ("Error in Json: \(error)")
+                    print ("Error in GetData class from Json: \(error)")
                 }
             }
         }).resume()

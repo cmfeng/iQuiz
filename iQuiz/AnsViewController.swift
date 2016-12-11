@@ -17,15 +17,15 @@ class AnsViewController: UIViewController {
 
     var sub = ""
     var corCount = 0
-    var curQs : [Question]? = nil
-    var qCount : Int = 2
+    var curQs : [Question]?
+    var qCount : Int = 0
     var userAns : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         let q = self.curQs![self.qCount]
         
         CorAnsText.text = q.answers[q.answer]
-        if self.userAns == q.answer {
+        if self.userAns == q.answer{
             self.corCount += 1
             ResultLabel.text = "Right!"
         } else {
@@ -33,9 +33,12 @@ class AnsViewController: UIViewController {
         }
         QuesText.text = q.text
     }
+
+    
+    
     @IBAction func NextButton(_ sender: AnyObject) {
         if (self.qCount + 1 == self.curQs!.count) {
-            performSegue(withIdentifier: "finishSegue", sender: self)
+            performSegue(withIdentifier: "finish", sender: self)
         } else {
             performSegue(withIdentifier: "nextSegue", sender: self)
             //self.dismiss(animated: true, completion: nil)
@@ -53,17 +56,15 @@ class AnsViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if (segue.identifier == "finish") {
+            if (segue.identifier == "finish") {
             let destination = segue.destination as! FinishViewController
-            destination.qCount = self.curQs!.count
-            destination.corCount = self.corCount
-        }
+                destination.corCount = self.corCount
+                destination.qCount = self.curQs!.count
+            }
         else if (segue.identifier == "nextSegue") {
             let destination = segue.destination as! QuestionViewController
-            destination.subject = self.sub
             destination.qIndex = self.qCount + 1
+            destination.subject = self.sub
             destination.numCrt = self.corCount
         }
     }

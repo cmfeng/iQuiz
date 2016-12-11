@@ -70,43 +70,20 @@ class MainTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-/*
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.reloadData()
-        
-    }*/
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return self.quizes.list.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell", for: indexPath)
         cell.awakeFromNib()
         cell.setSelected(true, animated: true)
-
+        
         // Configure the cell...
         let image : UIImage = UIImage(named: "3")!
         
-        //let cellImg : UIImageView = UIImageView()
-        //cellImg.frame = CGRect(x: 0, y: 0, width : 50, height: 100)
-        //cellImg.image = image
-        //cell.imageView?.image = quizes.list[indexPath.row].icon
         cell.imageView?.image = image
         //cell.addSubview(cellImg)
         let sub = self.quizes.list[indexPath.row].subject
@@ -119,48 +96,26 @@ class MainTableViewController: UITableViewController {
         //print (self.quizes.list)
         return cell
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
+/*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
     */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
- 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UserDefaults.standard.set(indexPath.row, forKey: "selectedRow")
-        UserDefaults.standard.set(0, forKey: "queNumber")
-        UserDefaults.standard.set(0, forKey: "rightNumber")
-        //UserDefaults.standard.integer(forKey: "selectedRow") = indexPath.row
-    }*/
 
     
     // MARK: - Navigation
@@ -173,6 +128,8 @@ class MainTableViewController: UITableViewController {
         let cell = sender
         let seletedRow = tableView.indexPath(for: cell as! UITableViewCell)!.row
         destination.subject = quizes.list[seletedRow].subject
+        print (seletedRow)
+        print (quizes.list.count)
     }
     
 

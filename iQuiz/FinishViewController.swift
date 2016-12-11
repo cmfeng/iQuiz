@@ -26,6 +26,8 @@ class FinishViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ScoreText.text = "\(corCount) of \(qCount) correct"
+        let r = corCount
+        let q = qCount
         let correctRate = Double(r)/Double(q)
         if (r == q){
             Desc = "Perfect!"
